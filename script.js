@@ -46,7 +46,7 @@ themeToggle.addEventListener('click', () => {
     const currentTheme = html.getAttribute('data-theme');
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     html.setAttribute('data-theme', newTheme);
-    themeToggle.textContent = newTheme === 'light' ? '☀️ Light' : '🌙 Dark';
+    themeToggle.textContent = newTheme === 'light' ? '☀️' : '🌙';
 });
 
 // Mobile Menu Toggle
@@ -135,16 +135,17 @@ const chatMessages = document.getElementById('chatMessages');
 const responses = {
     'hello': 'Hello! How can I assist you today?',
     'hi': 'Hi there! What would you like to know about Kyle?',
-    'skills': 'Kyle is skilled in PHP, JavaScript, Node.js, Flutter, SQL Server, Python, and system administration.',
-    'experience': 'Kyle has worked as a System Administrator at La Rose Noire, and has experience in various roles including software development and customer service.',
-    'projects': 'Kyle has developed several impressive projects including a Purchasing System, Live Monitoring E-Meals System, Skyharvest AI-Driven Aeroponics, and a 360 Photobooth application.',
+    'azzurro': 'At Azzurro Hotel, Kyle is an IT Assistant. He set up the server from scratch, connected biometrics to SQL, and is building an HRIS system with C#.',
+    'hotel': 'At Azzurro Hotel, Kyle is an IT Assistant. He set up the server from scratch, connected biometrics to SQL, and is building an HRIS system with C#.',
+    'hris': 'Kyle is developing a full HRIS that integrates hardware for attendance, calculates tax/benefits/overtime, and generates payslips automatically.',
+    'server': 'Kyle set up the hotel server infrastructure from scratch using Windows Server and Active Directory.',
+    'skills': 'Kyle is skilled in C#, ASP.NET, PHP, Node.js, Google Apps Script, SQL Server, and Hardware Integration.',
+    'experience': 'Kyle is currently an IT Assistant at Azzurro Hotel. Previously, he was a System Administrator at La Rose Noire.',
+    'projects': 'Recent highlights: Integrated HRIS & Payroll, Biometric-to-SQL middleware, and a Multi-Department Inventory System.',
+    'contact': 'You can email Kyle at dimlakylejustine@gmail.com or call +63 975 983 7461.',
     'education': 'Kyle graduated with a Bachelor of Science in Computer Engineering from Holy Cross College (2021-2025), with Best in Thesis honors.',
-    'contact': 'You can reach Kyle at dimlakylejustine@gmail.com or call +63 975 983 7461. Kyle is based in Candaba, Pampanga.',
     'thesis': 'Kyle\'s thesis was on "Skyharvest: AI-Driven Aeroponics Vertical Farming" and received Best in Thesis recognition.',
-    'location': 'Kyle is based in Candaba, Pampanga, Philippines.',
-    'email': 'You can email Kyle at dimlakylejustine@gmail.com',
-    'phone': 'You can call Kyle at +63 975 983 7461',
-    'default': 'I\'m here to help! You can ask me about Kyle\'s skills, experience, projects, education, or contact information.'
+    'default': 'I can tell you about Kyle\'s work at Azzurro Hotel, his HRIS project, or his technical skills.'
 };
 
 function addMessage(message, isUser = false) {
@@ -219,9 +220,9 @@ document.querySelectorAll('.project-card').forEach(card => {
         const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-15px)`;
+        const rotateX = (y - centerY) / 20; // Reduced intensity
+        const rotateY = (centerX - x) / 20;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
     });
     
     card.addEventListener('mouseleave', () => {
