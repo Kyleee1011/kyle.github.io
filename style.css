@@ -167,42 +167,138 @@ nav {
     max-width: 800px;
 }
 
-/* Profile Image */
-.profile-image-container {
-    width: 180px;
-    height: 180px;
+/* --- MEDIA CONSOLE (Video Player) --- */
+
+.media-console-container {
+    width: 100%;
+    max-width: 600px; /* Limits width for desktop */
+    margin: 0 auto 30px;
     position: relative;
-    margin-bottom: 20px;
+    z-index: 10;
 }
 
-.profile-image-wrapper {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    padding: 4px;
-    background: var(--gradient-main);
+.console-frame {
     position: relative;
-    overflow: hidden;
-    box-shadow: var(--shadow-card);
+    /* This enforces a 16:9 Aspect Ratio so the layout doesn't jump */
+    aspect-ratio: 16 / 9; 
+    background: var(--bg-card);
+    border: 1px solid var(--accent-blue);
+    border-radius: 12px;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.15);
+    overflow: hidden; /* Keeps image/video inside the rounded corners */
 }
 
-.profile-image {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    background: var(--bg-primary);
-    border: 4px solid var(--bg-primary);
+/* 1. Cover Image Styles */
+.video-cover {
     position: absolute;
     top: 0;
     left: 0;
-    transition: opacity 0.5s ease;
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Sits on top of video */
+    cursor: pointer;
+    transition: opacity 0.5s ease, visibility 0.5s;
+    background: #000;
 }
 
-.profile-image.hover { opacity: 0; z-index: 2; }
-.profile-image-wrapper:hover .profile-image.hover { opacity: 1; }
-.profile-image-wrapper:hover .profile-image.main { opacity: 0; }
+/* Helper class to hide cover when clicked */
+.video-cover.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
 
+.cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fills 16:9 space without stretching */
+    opacity: 0.8;
+    transition: transform 0.5s ease;
+}
+
+.video-cover:hover .cover-img {
+    transform: scale(1.05);
+    opacity: 0.6;
+}
+
+/* 2. Play Button Overlay */
+.play-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    z-index: 3;
+    pointer-events: none; /* Allows click to pass through to the cover div */
+}
+
+.play-icon-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(0, 212, 255, 0.2);
+    border: 2px solid var(--accent-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #fff;
+    box-shadow: 0 0 20px var(--accent-glow);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.video-cover:hover .play-icon-circle {
+    background: var(--accent-blue);
+    transform: scale(1.1);
+    box-shadow: 0 0 40px var(--accent-glow);
+}
+
+.blink-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--accent-blue);
+    animation: blink 2s infinite;
+    text-shadow: 0 0 5px var(--accent-glow);
+}
+
+/* 3. Video Styles */
+.main-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Sits behind cover */
+    object-fit: cover;
+}
+
+/* 4. Decorative Corners */
+.corner {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--accent-blue);
+    z-index: 5;
+    pointer-events: none;
+    box-shadow: 0 0 5px var(--accent-glow);
+}
+
+.corner-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+.corner-tr { top: 10px; right: 10px; border-left: none; border-bottom: none; }
+.corner-bl { bottom: 10px; left: 10px; border-right: none; border-top: none; }
+.corner-br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Landing Text */
 .landing-content h1 {
     font-family: 'Orbitron', sans-serif;
     font-size: clamp(40px, 8vw, 72px);
@@ -614,4 +710,8 @@ footer { padding: 40px 0; text-align: center; color: var(--text-secondary); bord
     .timeline-item { width: 100%; left: 0; padding-left: 60px; padding-right: 20px; text-align: left; }
     .timeline-item:nth-child(even) { left: 0; }
     .timeline-item:nth-child(odd) .timeline-dot, .timeline-item:nth-child(even) .timeline-dot { left: 21px; right: auto; }
+    
+    .media-console-container {
+        padding: 0 10px;
+    }
 }

@@ -247,3 +247,25 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// --- NEW: Video Intro Interaction ---
+const videoCover = document.getElementById('videoCover');
+const introVideo = document.getElementById('introVideo');
+
+if (videoCover && introVideo) {
+    videoCover.addEventListener('click', () => {
+        // 1. Fade out the cover image
+        videoCover.classList.add('hidden');
+        
+        // 2. Play the video immediately
+        introVideo.play();
+        
+        // Unmute just in case
+        introVideo.muted = false; 
+    });
+
+    // Optional: Show cover again when video ends
+    introVideo.addEventListener('ended', () => {
+        videoCover.classList.remove('hidden');
+    });
+}
