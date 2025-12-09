@@ -277,7 +277,7 @@ section {
 }
 
 /* Modern Card Style */
-.about-text, .contact-info, .timeline-content, .project-card, .skill-item, .chatbot-container, .contact-form {
+.about-text, .contact-info, .timeline-content, .project-card, .skill-card, .chatbot-container, .contact-form {
     background: var(--bg-card);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -457,31 +457,64 @@ section {
     border-color: rgba(0, 102, 204, 0.3);
 }
 
-/* Skills */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 20px;
+/* Skills Carousel */
+.skills-carousel-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding: 20px 0;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-.skill-item {
+.skills-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+}
+
+.skills-track:hover {
+    animation-play-state: paused;
+}
+
+.skill-card {
+    min-width: 180px;
     padding: 25px;
     text-align: center;
     border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    /* Removed default grid margin behaviors */
 }
 
-.skill-item:hover {
+.skill-card i {
+    font-size: 32px;
+    margin-bottom: 10px;
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.skill-card:hover {
     background: rgba(255, 255, 255, 0.03);
     border-color: var(--accent-purple);
     transform: translateY(-5px);
+    box-shadow: var(--shadow-card);
 }
 
-[data-theme="light"] .skill-item:hover {
-    background: rgba(0, 0, 0, 0.03);
-}
+.skill-card h4 { color: var(--text-primary); margin-bottom: 5px; font-size: 16px; white-space: nowrap; }
+.skill-card p { color: var(--text-secondary); font-size: 12px; }
 
-.skill-item h4 { color: var(--text-primary); margin-bottom: 5px; font-size: 16px; }
-.skill-item p { color: var(--text-secondary); font-size: 13px; }
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Shift by half to create loop */
+}
 
 /* Contact */
 .contact-container {

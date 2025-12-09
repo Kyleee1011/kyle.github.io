@@ -138,14 +138,19 @@ const responses = {
     'azzurro': 'At Azzurro Hotel, Kyle is an IT Assistant. He set up the server from scratch, connected biometrics to SQL, and is building an HRIS system with C#.',
     'hotel': 'At Azzurro Hotel, Kyle is an IT Assistant. He set up the server from scratch, connected biometrics to SQL, and is building an HRIS system with C#.',
     'hris': 'Kyle is developing a full HRIS that integrates hardware for attendance, calculates tax/benefits/overtime, and generates payslips automatically.',
-    'server': 'Kyle set up the hotel server infrastructure from scratch using Windows Server and Active Directory.',
-    'skills': 'Kyle is skilled in C#, ASP.NET, PHP, Node.js, Google Apps Script, SQL Server, and Hardware Integration.',
+    'server': 'Kyle set up the hotel server infrastructure from scratch. He used TrueNAS Scale on repurposed hardware for a file server and configured Samba for the Active Directory Domain Controller.',
+    'nas': 'Kyle built a cost-effective file server using TrueNAS Scale on scrap PC components to provide private departmental folders.',
+    'truenas': 'Kyle built a cost-effective file server using TrueNAS Scale on scrap PC components to provide private departmental folders.',
+    'samba': 'He used Samba to set up the Active Directory Domain Controller, ensuring better control and security for the network.',
+    'ms365': 'Kyle is an MS365 Administrator, handling user support, license management, and performing critical Outlook data backups.',
+    '365': 'Kyle is an MS365 Administrator, handling user support, license management, and performing critical Outlook data backups.',
+    'skills': 'Kyle is skilled in C#, ASP.NET, PHP, Node.js, Google Apps Script, SQL Server, TrueNAS, Samba, and Hardware Integration.',
     'experience': 'Kyle is currently an IT Assistant at Azzurro Hotel. Previously, he was a System Administrator at La Rose Noire.',
-    'projects': 'Recent highlights: Integrated HRIS & Payroll, Biometric-to-SQL middleware, and a Multi-Department Inventory System.',
+    'projects': 'Recent highlights: Integrated HRIS & Payroll, TrueNAS File Server, Biometric-to-SQL middleware, and MS365 Administration.',
     'contact': 'You can email Kyle at dimlakylejustine@gmail.com or call +63 975 983 7461.',
     'education': 'Kyle graduated with a Bachelor of Science in Computer Engineering from Holy Cross College (2021-2025), with Best in Thesis honors.',
     'thesis': 'Kyle\'s thesis was on "Skyharvest: AI-Driven Aeroponics Vertical Farming" and received Best in Thesis recognition.',
-    'default': 'I can tell you about Kyle\'s work at Azzurro Hotel, his HRIS project, or his technical skills.'
+    'default': 'I can tell you about Kyle\'s work at Azzurro Hotel, his HRIS project, his TrueNAS server setup, or his technical skills.'
 };
 
 function addMessage(message, isUser = false) {
@@ -180,6 +185,17 @@ chatInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') sendChatMessage();
 });
 
+// Skills Carousel Infinite Loop Logic
+const skillsTrack = document.getElementById('skillsTrack');
+if (skillsTrack) {
+    // Clone children to create a seamless loop
+    const skills = Array.from(skillsTrack.children);
+    skills.forEach(skill => {
+        const clone = skill.cloneNode(true);
+        skillsTrack.appendChild(clone);
+    });
+}
+
 // Intersection Observer for scroll animations
 const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
 const observer = new IntersectionObserver((entries) => {
@@ -191,7 +207,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-document.querySelectorAll('.project-card, .skill-item, .about-text, .contact-info').forEach(el => {
+document.querySelectorAll('.project-card, .skill-card, .about-text, .contact-info').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
