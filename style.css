@@ -463,8 +463,18 @@ section {
     position: relative;
     width: 100%;
     padding: 20px 0;
-    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    
+    /* ADD THIS: Required for Facebook/Safari */
     -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    
+    /* Keep the standard one for Chrome/PC */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* Ensure cards are visible even if JS is slow/blocked */
+.skill-card {
+    opacity: 1 !important; 
+    transform: translateY(0) !important;
 }
 
 .skills-track {
@@ -472,10 +482,17 @@ section {
     gap: 20px;
     width: max-content;
     animation: scroll 40s linear infinite;
+    
+    /* ADD THESE: Forces GPU rendering */
+    will-change: transform;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
-.skills-track:hover {
-    animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+    .skills-track:hover {
+        animation-play-state: paused;
+    }
 }
 
 .skill-card {
