@@ -1,265 +1,285 @@
-// Particles.js Configuration
-particlesJS('particles-js', {
-    particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
-        color: { value: '#00d4ff' },
-        shape: { type: 'circle' },
-        opacity: { value: 0.5, random: false },
-        size: { value: 3, random: true },
-        line_linked: {
-            enable: true,
-            distance: 150,
-            color: '#00d4ff',
-            opacity: 0.4,
-            width: 1
+/* =========================================
+   PARTICLES & UI SETUP
+   ========================================= */
+   if (typeof particlesJS !== 'undefined') {
+    particlesJS('particles-js', {
+        particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: '#00d4ff' },
+            shape: { type: 'circle' },
+            opacity: { value: 0.5, random: false },
+            size: { value: 3, random: true },
+            line_linked: { enable: true, distance: 150, color: '#00d4ff', opacity: 0.4, width: 1 },
+            move: { enable: true, speed: 2, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
         },
-        move: {
-            enable: true,
-            speed: 2,
-            direction: 'none',
-            random: false,
-            straight: false,
-            out_mode: 'out',
-            bounce: false
-        }
-    },
-    interactivity: {
-        detect_on: 'canvas',
-        events: {
-            onhover: { enable: true, mode: 'repulse' },
-            onclick: { enable: true, mode: 'push' },
-            resize: true
+        interactivity: {
+            detect_on: 'canvas',
+            events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' }, resize: true },
+            modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
         },
-        modes: {
-            repulse: { distance: 100, duration: 0.4 },
-            push: { particles_nb: 4 }
-        }
-    },
-    retina_detect: true
-});
+        retina_detect: true
+    });
+}
 
 // Theme Toggle
 const themeToggle = document.getElementById('themeToggle');
 const html = document.documentElement;
-
-themeToggle.addEventListener('click', () => {
-    const currentTheme = html.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    html.setAttribute('data-theme', newTheme);
-    themeToggle.textContent = newTheme === 'light' ? '☀️' : '🌙';
-});
-
-// Mobile Menu Toggle
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navLinks = document.getElementById('navLinks');
-
-mobileMenuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-});
-
-navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        html.setAttribute('data-theme', newTheme);
+        themeToggle.textContent = newTheme === 'light' ? '☀️' : '🌙';
     });
-});
+}
 
 // Smooth Scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });
 
-// Timeline Animation on Scroll
+// Timeline Animation
 const timelineObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('show');
     });
 }, { threshold: 0.2 });
+document.querySelectorAll('.timeline-item').forEach(item => timelineObserver.observe(item));
 
-document.querySelectorAll('.timeline-item').forEach(item => {
-    timelineObserver.observe(item);
-});
-
-// Contact Form Submission
+// Contact Form
 const contactForm = document.getElementById('contactForm');
 const submitBtn = document.getElementById('submitBtn');
 const successMessage = document.getElementById('successMessage');
-
-contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-    
-    const formData = {
-        name: document.getElementById('name').value,
-        email: document.getElementById('email').value,
-        message: document.getElementById('message').value
-    };
-
-    try {
-        const response = await fetch('https://formsubmit.co/dimlakylejustine@gmail.com', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        });
-
-        if (response.ok) {
-            successMessage.style.display = 'block';
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+        const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            message: document.getElementById('message').value
+        };
+        try {
+            const response = await fetch('https://formsubmit.co/ajax/dimlakylejustine@gmail.com', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify(formData)
+            });
+            if (response.ok) {
+                successMessage.style.display = 'block';
+                contactForm.reset();
+                setTimeout(() => { successMessage.style.display = 'none'; }, 5000);
+            }
+        } catch (error) {
+            alert('Message sent! Thank you.');
             contactForm.reset();
-            setTimeout(() => { successMessage.style.display = 'none'; }, 5000);
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Send Message';
         }
-    } catch (error) {
-        alert('Message sent! Thank you for reaching out.');
-        contactForm.reset();
-    } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Send Message';
-    }
-});
-
-// Chatbot Functionality
-const chatInput = document.getElementById('chatInput');
-const chatSendBtn = document.getElementById('chatSendBtn');
-const chatMessages = document.getElementById('chatMessages');
-
-const responses = {
-    'hello': 'Hello! How can I assist you today?',
-    'hi': 'Hi there! What would you like to know about Kyle?',
-    'azzurro': 'At Azzurro Hotel, Kyle is an IT Assistant. He set up the server from scratch, connected biometrics to SQL, and is building an HRIS system with C#.',
-    'hotel': 'At Azzurro Hotel, Kyle is an IT Assistant. He set up the server from scratch, connected biometrics to SQL, and is building an HRIS system with C#.',
-    'hris': 'Kyle is developing a full HRIS that integrates hardware for attendance, calculates tax/benefits/overtime, and generates payslips automatically.',
-    'server': 'Kyle set up the hotel server infrastructure from scratch. He used TrueNAS Scale on repurposed hardware for a file server and configured Samba for the Active Directory Domain Controller.',
-    'nas': 'Kyle built a cost-effective file server using TrueNAS Scale on scrap PC components to provide private departmental folders.',
-    'truenas': 'Kyle built a cost-effective file server using TrueNAS Scale on scrap PC components to provide private departmental folders.',
-    'samba': 'He used Samba to set up the Active Directory Domain Controller, ensuring better control and security for the network.',
-    'ms365': 'Kyle is an MS365 Administrator, handling user support, license management, and performing critical Outlook data backups.',
-    '365': 'Kyle is an MS365 Administrator, handling user support, license management, and performing critical Outlook data backups.',
-    'skills': 'Kyle is skilled in C#, ASP.NET, PHP, Node.js, Google Apps Script, SQL Server, TrueNAS, Samba, and Hardware Integration.',
-    'experience': 'Kyle is currently an IT Assistant at Azzurro Hotel. Previously, he was a System Administrator at La Rose Noire.',
-    'projects': 'Recent highlights: Integrated HRIS & Payroll, TrueNAS File Server, Biometric-to-SQL middleware, and MS365 Administration.',
-    'contact': 'You can email Kyle at dimlakylejustine@gmail.com or call +63 975 983 7461.',
-    'education': 'Kyle graduated with a Bachelor of Science in Computer Engineering from Holy Cross College (2021-2025), with Best in Thesis honors.',
-    'thesis': 'Kyle\'s thesis was on "Skyharvest: AI-Driven Aeroponics Vertical Farming" and received Best in Thesis recognition.',
-    'default': 'I can tell you about Kyle\'s work at Azzurro Hotel, his HRIS project, his TrueNAS server setup, or his technical skills.'
-};
-
-function addMessage(message, isUser = false) {
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
-    messageDiv.textContent = message;
-    chatMessages.appendChild(messageDiv);
-    chatMessages.scrollTop = chatMessages.scrollHeight;
+    });
 }
 
-function getBotResponse(userMessage) {
-    const lowerMessage = userMessage.toLowerCase();
-    for (const [key, response] of Object.entries(responses)) {
-        if (lowerMessage.includes(key)) return response;
-    }
-    return responses.default;
-}
-
-function sendChatMessage() {
-    const message = chatInput.value.trim();
-    if (message) {
-        addMessage(message, true);
-        chatInput.value = '';
-        setTimeout(() => {
-            addMessage(getBotResponse(message), false);
-        }, 500);
-    }
-}
-
-chatSendBtn.addEventListener('click', sendChatMessage);
-chatInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendChatMessage();
-});
-
-// Skills Carousel Infinite Loop Logic
+// Skills Carousel Loop
 const skillsTrack = document.getElementById('skillsTrack');
 if (skillsTrack) {
-    // Clone children to create a seamless loop
     const skills = Array.from(skillsTrack.children);
-    skills.forEach(skill => {
-        const clone = skill.cloneNode(true);
-        skillsTrack.appendChild(clone);
-    });
+    skills.forEach(skill => skillsTrack.appendChild(skill.cloneNode(true)));
 }
 
-// Intersection Observer for scroll animations
-const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.project-card, .skill-card, .about-text, .contact-info').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
-
-// Parallax effect for floating shapes
+// 3D & Parallax Effects
 document.addEventListener('mousemove', (e) => {
-    const shapes = document.querySelectorAll('.shape');
-    const x = e.clientX / window.innerWidth;
-    const y = e.clientY / window.innerHeight;
-    
-    shapes.forEach((shape, index) => {
+    document.querySelectorAll('.shape').forEach((shape, index) => {
         const speed = (index + 1) * 20;
-        const xMove = (x - 0.5) * speed;
-        const yMove = (y - 0.5) * speed;
-        shape.style.transform = `translate(${xMove}px, ${yMove}px)`;
+        shape.style.transform = `translate(${(e.clientX/window.innerWidth - 0.5) * speed}px, ${(e.clientY/window.innerHeight - 0.5) * speed}px)`;
     });
 });
-
-// 3D tilt effect for project cards
 document.querySelectorAll('.project-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = (y - centerY) / 20; // Reduced intensity
-        const rotateY = (centerX - x) / 20;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+        card.style.transform = `perspective(1000px) rotateX(${((e.clientY - rect.top) - rect.height/2)/20}deg) rotateY(${((rect.width/2) - (e.clientX - rect.left))/20}deg) translateY(-5px)`;
     });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
-    });
+    card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)');
 });
 
-// Active nav link based on scroll
+// Scroll Active Link
 window.addEventListener('scroll', () => {
     let current = '';
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (scrollY >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
-        }
+    document.querySelectorAll('section').forEach(section => {
+        if (scrollY >= (section.offsetTop - 200)) current = section.getAttribute('id');
     });
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
-            link.classList.add('active');
-        }
-    });
+    const navList = document.getElementById('navLinks');
+    if (navList) {
+        navList.querySelectorAll('a').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').slice(1) === current) link.classList.add('active');
+        });
+    }
 });
+
+/* =========================================
+   FLOATING AI CHAT & LOGIC
+   ========================================= */
+
+// ⚠️ PASTE YOUR API KEY HERE ⚠️
+const API_KEY = 'AIzaSyAfMtYrra3tIdaTTD8jwunA_awO89ZSnBc'; 
+
+const chatInput = document.getElementById('chatInput');
+const chatSendBtn = document.getElementById('chatSendBtn');
+const chatMessages = document.getElementById('chatMessages');
+const chatContainer = document.getElementById('chatContainer');
+const chatToggleBtn = document.getElementById('chatToggleBtn');
+const closeChatBtn = document.getElementById('closeChatBtn');
+
+// Toggle Chat Visibility
+if (chatToggleBtn && chatContainer) {
+    chatToggleBtn.addEventListener('click', () => {
+        chatContainer.classList.toggle('active');
+        if (chatContainer.classList.contains('active')) {
+            chatInput.focus();
+        }
+    });
+}
+
+if (closeChatBtn) {
+    closeChatBtn.addEventListener('click', () => {
+        chatContainer.classList.remove('active');
+    });
+}
+
+let cachedModelUrl = null;
+
+// Context Loader
+function getWebsiteContext() {
+    const sections = ['about', 'experience', 'projects', 'skills', 'education'];
+    let context = "You are the AI representative for Kyle Justine C. Dimla. \n\n" +
+    "INSTRUCTIONS:\n" +
+    "1. Answer strictly based on the resume below.\n" +
+    "2. Be Systematic: Use bullet points for lists. Use bold text for key skills or tools.\n" +
+    "3. Be Professional: Answer on Kyle's behalf. Keep it concise but informative.\n" +
+    "4. Formatting: If listing projects or skills, separate them with line breaks.\n" +
+    "\n--- RESUME DATA ---\n";
+
+    sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            context += `[${id.toUpperCase()}]\n${el.innerText.replace(/\s+/g, ' ').trim()}\n\n`;
+        }
+    });
+    return context;
+}
+
+// Text Formatter
+function formatBotResponse(text) {
+    let clean = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    clean = clean.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    clean = clean.replace(/\*(.*?)\*/g, '<strong>$1</strong>');
+    clean = clean.replace(/^\s*[\-\*]\s+(.*)$/gm, '• $1');
+    return clean;
+}
+
+// UI Helper
+function addMessage(text, isUser, type = '') {
+    const div = document.createElement('div');
+    div.className = `message ${isUser ? 'user' : 'bot'} ${type}`;
+    
+    if (isUser || type === 'loading') {
+        div.textContent = text;
+    } else {
+        div.innerHTML = formatBotResponse(text);
+    }
+    
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    return div;
+}
+
+// Auto-Discovery Model
+async function findWorkingModel() {
+    if (cachedModelUrl) return cachedModelUrl;
+
+    const cleanKey = API_KEY.trim();
+    if (cleanKey === 'PASTE_YOUR_API_KEY_HERE' || !cleanKey) throw new Error("Missing API Key");
+
+    const listUrl = `https://generativelanguage.googleapis.com/v1beta/models?key=${cleanKey}`;
+    
+    try {
+        const response = await fetch(listUrl);
+        const data = await response.json();
+        
+        if (data.error) throw new Error(data.error.message);
+        if (!data.models) throw new Error("No models found.");
+
+        const viableModels = data.models
+            .filter(m => m.supportedGenerationMethods?.includes("generateContent"))
+            .map(m => m.name);
+
+        let bestModel = viableModels.find(m => m.includes('flash')) || 
+                        viableModels.find(m => m.includes('pro')) || 
+                        viableModels[0];
+
+        if (!bestModel) throw new Error("No chat-capable models available.");
+
+        bestModel = bestModel.replace('models/', '');
+        cachedModelUrl = `https://generativelanguage.googleapis.com/v1beta/models/${bestModel}:generateContent?key=${cleanKey}`;
+        return cachedModelUrl;
+
+    } catch (err) {
+        throw err;
+    }
+}
+
+// Send Message
+async function sendChatMessage() {
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    addMessage(text, true);
+    chatInput.value = '';
+    const loading = addMessage('Thinking...', false, 'loading');
+
+    try {
+        const apiUrl = await findWorkingModel();
+
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{ text: getWebsiteContext() + "\nUser Question: " + text + "\nAnswer:" }]
+                }]
+            })
+        });
+
+        const data = await response.json();
+        chatMessages.removeChild(loading);
+
+        if (data.error) {
+            addMessage(`Error: ${data.error.message}`, false);
+        } else {
+            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
+            addMessage(reply, false);
+        }
+
+    } catch (error) {
+        chatMessages.removeChild(loading);
+        if (error.message === "Missing API Key") {
+            addMessage("⚠️ Error: Please paste your API Key in script.js", false);
+        } else {
+            addMessage("System Error: Unable to connect to Google AI. Please check your internet or API Key permissions.", false);
+        }
+    }
+}
+
+// Chat Listeners
+if (chatSendBtn && chatInput) {
+    chatSendBtn.addEventListener('click', sendChatMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendChatMessage();
+    });
+}
