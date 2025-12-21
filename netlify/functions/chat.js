@@ -9,14 +9,16 @@ export const handler = async (event) => {
     }
 
     try {
-        // 2. Get the User's Input from the website
+        // 2. Parse the User's Input
+        if (!event.body) {
+            return { statusCode: 400, body: JSON.stringify({ error: "No data received" }) };
+        }
+        
         const { message, context } = JSON.parse(event.body);
 
         // 3. Get the Secret API Key from Netlify Settings
-        // (You will set this in the Netlify Dashboard, NOT in this file)
         const API_KEY = process.env.GEMINI_API_KEY;
 
-        // Safety Check: Did you forget to add the key in Netlify?
         if (!API_KEY) {
             console.error("Error: GEMINI_API_KEY is missing in Netlify Environment Variables.");
             return {
@@ -25,9 +27,13 @@ export const handler = async (event) => {
             };
         }
 
-        // 4. Call Google Gemini API (Server-to-Server)
-        // We use the 'gemini-1.5-flash' model for speed
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+        // 4. Call Google Gemini API
+        // FIX: Using 'gemini-1.5-flash-latest' which is often more stable for REST API calls
+        // than the generic alias.
+        const MODEL_NAME = "gemini-1.5-flash-latest";
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
+
+        const response = await fetch(API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -39,12 +45,14 @@ export const handler = async (event) => {
 
         const data = await response.json();
 
-        // 5. Send the answer back to your website
-        if (data.error) {
-            console.error("Google API Error:", data.error);
+        // 5. Error Handling
+        if (!response.ok) {
+            console.error("Google API Error Details:", JSON.stringify(data));
             return {
-                statusCode: 500,
-                body: JSON.stringify({ error: data.error.message })
+                statusCode: response.status,
+                body: JSON.stringify({ 
+                    error: data.error?.message || "Google API request failed. Check logs." 
+                })
             };
         }
 
