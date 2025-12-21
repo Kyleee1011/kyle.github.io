@@ -127,7 +127,7 @@ window.addEventListener('scroll', () => {
    ========================================= */
 
 // ⚠️ PASTE YOUR API KEY HERE ⚠️
-const API_KEY = 'AIzaSyAfMtYrra3tIdaTTD8jwunA_awO89ZSnBc'; 
+const API_KEY = ''; 
 
 const chatInput = document.getElementById('chatInput');
 const chatSendBtn = document.getElementById('chatSendBtn');
