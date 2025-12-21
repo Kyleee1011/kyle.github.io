@@ -15,8 +15,6 @@ export const handler = async (event) => {
         }
         
         const { message, context } = JSON.parse(event.body);
-
-        // 3. Get the Secret API Key from Netlify Settings
         const API_KEY = process.env.GEMINI_API_KEY;
 
         if (!API_KEY) {
@@ -27,12 +25,13 @@ export const handler = async (event) => {
             };
         }
 
-        // 4. Call Google Gemini API
-        // FIX: Using 'gemini-1.5-flash-latest' which is often more stable for REST API calls
-        // than the generic alias.
-        const MODEL_NAME = "gemini-1.5-flash-latest";
+        // 3. Define the Model
+        // "gemini-1.5-flash" is the current standard. 
+        // We removed "-latest" which was causing the 404 error.
+        const MODEL_NAME = "gemini-1.5-flash";
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
 
+        // 4. Call Google Gemini API
         const response = await fetch(API_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -45,14 +44,18 @@ export const handler = async (event) => {
 
         const data = await response.json();
 
-        // 5. Error Handling
+        // 5. Error Handling & Debugging
         if (!response.ok) {
-            console.error("Google API Error Details:", JSON.stringify(data));
+            console.error(`Google API Error (${MODEL_NAME}):`, JSON.stringify(data));
+            
+            // Helpful error message for the frontend
+            let errorMsg = "AI Service Error";
+            if (data.error && data.error.message) {
+                errorMsg = `Google Error: ${data.error.message}`;
+            }
             return {
                 statusCode: response.status,
-                body: JSON.stringify({ 
-                    error: data.error?.message || "Google API request failed. Check logs." 
-                })
+                body: JSON.stringify({ error: errorMsg })
             };
         }
 
