@@ -123,11 +123,10 @@ window.addEventListener('scroll', () => {
 });
 
 /* =========================================
-   FLOATING AI CHAT & LOGIC
+   FLOATING AI CHAT & LOGIC (SECURE MODE)
    ========================================= */
 
-// ⚠️ PASTE YOUR API KEY HERE ⚠️
-const API_KEY = ''; 
+// NOTE: No API Key is needed here. It is safely stored in your Netlify Backend.
 
 const chatInput = document.getElementById('chatInput');
 const chatSendBtn = document.getElementById('chatSendBtn');
@@ -152,9 +151,7 @@ if (closeChatBtn) {
     });
 }
 
-let cachedModelUrl = null;
-
-// Context Loader
+// Context Loader (Reads your Resume from the HTML)
 function getWebsiteContext() {
     const sections = ['about', 'experience', 'projects', 'skills', 'education'];
     let context = "You are the AI representative for Kyle Justine C. Dimla. \n\n" +
@@ -174,16 +171,16 @@ function getWebsiteContext() {
     return context;
 }
 
-// Text Formatter
+// Text Formatter (Converts AI Markdown to HTML)
 function formatBotResponse(text) {
     let clean = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    clean = clean.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-    clean = clean.replace(/\*(.*?)\*/g, '<strong>$1</strong>');
-    clean = clean.replace(/^\s*[\-\*]\s+(.*)$/gm, '• $1');
+    clean = clean.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold **text**
+    clean = clean.replace(/\*(.*?)\*/g, '<strong>$1</strong>');     // Bold *text*
+    clean = clean.replace(/^\s*[\-\*]\s+(.*)$/gm, '• $1');          // Bullet points
     return clean;
 }
 
-// UI Helper
+// UI Helper (Adds messages to the chat box)
 function addMessage(text, isUser, type = '') {
     const div = document.createElement('div');
     div.className = `message ${isUser ? 'user' : 'bot'} ${type}`;
@@ -199,60 +196,26 @@ function addMessage(text, isUser, type = '') {
     return div;
 }
 
-// Auto-Discovery Model
-async function findWorkingModel() {
-    if (cachedModelUrl) return cachedModelUrl;
-
-    const cleanKey = API_KEY.trim();
-    if (cleanKey === 'PASTE_YOUR_API_KEY_HERE' || !cleanKey) throw new Error("Missing API Key");
-
-    const listUrl = `https://generativelanguage.googleapis.com/v1beta/models?key=${cleanKey}`;
-    
-    try {
-        const response = await fetch(listUrl);
-        const data = await response.json();
-        
-        if (data.error) throw new Error(data.error.message);
-        if (!data.models) throw new Error("No models found.");
-
-        const viableModels = data.models
-            .filter(m => m.supportedGenerationMethods?.includes("generateContent"))
-            .map(m => m.name);
-
-        let bestModel = viableModels.find(m => m.includes('flash')) || 
-                        viableModels.find(m => m.includes('pro')) || 
-                        viableModels[0];
-
-        if (!bestModel) throw new Error("No chat-capable models available.");
-
-        bestModel = bestModel.replace('models/', '');
-        cachedModelUrl = `https://generativelanguage.googleapis.com/v1beta/models/${bestModel}:generateContent?key=${cleanKey}`;
-        return cachedModelUrl;
-
-    } catch (err) {
-        throw err;
-    }
-}
-
-// Send Message
+// Send Message (Connects to Netlify Function)
 async function sendChatMessage() {
     const text = chatInput.value.trim();
     if (!text) return;
 
+    // 1. Show User Message
     addMessage(text, true);
     chatInput.value = '';
+    
+    // 2. Show Loading Bubble
     const loading = addMessage('Thinking...', false, 'loading');
 
     try {
-        const apiUrl = await findWorkingModel();
-
-        const response = await fetch(apiUrl, {
+        // 3. Call the Secure Backend (Netlify)
+        const response = await fetch('/.netlify/functions/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                contents: [{
-                    parts: [{ text: getWebsiteContext() + "\nUser Question: " + text + "\nAnswer:" }]
-                }]
+                message: text,
+                context: getWebsiteContext()
             })
         });
 
@@ -260,23 +223,21 @@ async function sendChatMessage() {
         chatMessages.removeChild(loading);
 
         if (data.error) {
-            addMessage(`Error: ${data.error.message}`, false);
+            addMessage(`Error: ${data.error}`, false);
         } else {
+            // 4. Show AI Response
             const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
             addMessage(reply, false);
         }
 
     } catch (error) {
         chatMessages.removeChild(loading);
-        if (error.message === "Missing API Key") {
-            addMessage("⚠️ Error: Please paste your API Key in script.js", false);
-        } else {
-            addMessage("System Error: Unable to connect to Google AI. Please check your internet or API Key permissions.", false);
-        }
+        console.error("Connection Error:", error);
+        addMessage("System Error: Unable to reach the AI server. Please try again later.", false);
     }
 }
 
-// Chat Listeners
+// Chat Event Listeners
 if (chatSendBtn && chatInput) {
     chatSendBtn.addEventListener('click', sendChatMessage);
     chatInput.addEventListener('keypress', (e) => {
