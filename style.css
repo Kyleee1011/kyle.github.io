@@ -764,36 +764,48 @@ footer { padding: 40px 0; text-align: center; color: var(--text-secondary); bord
 
 /* Mobile */
 @media (max-width: 768px) {
-    .nav-links {
-        gap: 15px;
-        justify-content: center;
-        width: 100%;
-        margin-top: 10px;
-    }
-    
-    .nav-links a {
-        font-size: 14px;
-    }
-
-    .logo {
-        margin-bottom: 5px;
+    /* 1. Fix the Header Height & Layout */
+    header {
+        position: fixed; /* Ensures it stays pinned */
     }
 
     nav {
         flex-direction: column;
-        gap: 15px;
-        padding-bottom: 15px;
+        gap: 10px; /* Reduce gap to save vertical space */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .nav-links {
+        gap: 10px; /* Tighter spacing between links */
+        justify-content: center;
+        width: 100%;
+        margin-top: 5px;
+        padding-bottom: 5px;
     }
     
-    .timeline::before { left: 30px; }
-    .timeline-item { width: 100%; left: 0; padding-left: 60px; padding-right: 20px; text-align: left; }
-    .timeline-item:nth-child(even) { left: 0; }
-    .timeline-item:nth-child(odd) .timeline-dot, .timeline-item:nth-child(even) .timeline-dot { left: 21px; right: auto; }
+    .nav-links a {
+        font-size: 13px; /* Slightly smaller font for better fit */
+        display: inline-block;
+        padding: 5px 8px; /* Better touch targets */
+        background: rgba(255, 255, 255, 0.05); /* Optional: distinct buttons */
+        border-radius: 8px;
+    }
 
-    /* Mobile Chat Fixes */
-    .chatbot-container {
-        width: 90%;
-        bottom: 90px;
-        right: 5%;
+    /* 2. Push the Landing Content Down */
+    .landing {
+        /* CRITICAL FIX: Increased padding pushes content below the taller header */
+        padding-top: 240px; 
+        align-items: flex-start; /* Aligns content better if height is tight */
+    }
+
+    /* 3. Adjust Profile Image for Mobile */
+    .profile-image-container {
+        width: 140px; /* Slightly smaller image on mobile */
+        height: 140px;
+        margin-bottom: 15px;
+    }
+    
+    .landing-content h1 {
+        font-size: 32px; /* Prevent text from being too huge */
     }
 }
