@@ -310,6 +310,7 @@ section {
 .contact-info div { margin-bottom: 12px; color: var(--text-secondary); }
 .contact-info strong { color: var(--text-primary); margin-right: 10px; }
 
+/* Timeline (Desktop Defaults) */
 .timeline {
     position: relative;
     max-width: 1000px;
@@ -632,7 +633,6 @@ section {
    FLOATING AI CHAT STYLES (UPDATED)
    -------------------------------------------------- */
 
-/* 1. Toggle Button (FAB) */
 .chat-toggle-btn {
     position: fixed;
     bottom: 20px;
@@ -657,7 +657,6 @@ section {
     transform: scale(1.1);
 }
 
-/* 2. Floating Chat Container */
 .chatbot-container {
     position: fixed;
     bottom: 90px;
@@ -674,15 +673,12 @@ section {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    
-    /* Animation: start hidden and small */
     opacity: 0;
     transform: translateY(20px) scale(0.95);
     pointer-events: none;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* 3. Active State (Shown) */
 .chatbot-container.active {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -726,7 +722,6 @@ section {
     gap: 10px;
 }
 
-/* Chat Bubbles */
 .message {
     padding: 12px 16px;
     border-radius: 15px;
@@ -819,8 +814,12 @@ section {
 
 footer { padding: 40px 0; text-align: center; color: var(--text-secondary); border-top: 1px solid var(--border-color); font-size: 14px; }
 
-/* Mobile */
+/* =========================================
+   MOBILE OPTIMIZATION (UPDATED)
+   ========================================= */
+
 @media (max-width: 768px) {
+    /* 1. Header Fixes */
     header {
         position: fixed; 
     }
@@ -847,6 +846,7 @@ footer { padding: 40px 0; text-align: center; color: var(--text-secondary); bord
         border-radius: 8px;
     }
 
+    /* 2. Landing & Profile */
     .landing {
         padding-top: 240px; 
         align-items: flex-start;
@@ -860,5 +860,52 @@ footer { padding: 40px 0; text-align: center; color: var(--text-secondary); bord
     
     .landing-content h1 {
         font-size: 32px; 
+    }
+
+    /* 3. TIMELINE FIX (Experience & Education) */
+    /* Move the line to the left instead of center */
+    .timeline::before {
+        left: 30px; 
+    }
+
+    .timeline-item {
+        width: 100%; /* Take full width */
+        padding-left: 70px; /* Space for the line/dots */
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+
+    /* Reset even/odd specific positions so they all align left */
+    .timeline-item:nth-child(even) {
+        left: 0;
+    }
+
+    .timeline-item:nth-child(odd) {
+        text-align: left; /* Force left alignment */
+        padding-right: 0;
+        padding-left: 70px; /* Match even padding */
+    }
+
+    /* Fix Dot Positions */
+    .timeline-item:nth-child(odd) .timeline-dot,
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: 21px; /* Center on the new line position */
+        right: auto;
+    }
+    
+    /* Adjust content padding inside the card */
+    .timeline-content {
+        padding: 20px;
+    }
+
+    /* 4. FLIP CARD FIX (Projects) */
+    .projects-grid {
+        /* Force single column so cards are wide enough */
+        grid-template-columns: 1fr; 
+    }
+
+    .flip-card {
+        /* Ensure readable height on mobile */
+        min-height: 350px; 
     }
 }
