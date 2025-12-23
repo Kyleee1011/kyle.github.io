@@ -20,8 +20,9 @@ export const handler = async (event) => {
         }
         API_KEY = API_KEY.trim();
 
-        // 3. FORCE "gemini-1.5-flash" (The most stable model)
-        const MODEL = "gemini-1.5-flash";
+        // 3. UPDATED MODEL: gemini-1.5-flash is retired (Sept 2025). 
+        // We now use the stable gemini-2.5-flash
+        const MODEL = "gemini-2.5-flash";
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
 
         console.log("Attempting to connect to Google...");
