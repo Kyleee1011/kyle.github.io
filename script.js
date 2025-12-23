@@ -99,13 +99,8 @@ document.addEventListener('mousemove', (e) => {
         shape.style.transform = `translate(${(e.clientX/window.innerWidth - 0.5) * speed}px, ${(e.clientY/window.innerHeight - 0.5) * speed}px)`;
     });
 });
-document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        card.style.transform = `perspective(1000px) rotateX(${((e.clientY - rect.top) - rect.height/2)/20}deg) rotateY(${((rect.width/2) - (e.clientX - rect.left))/20}deg) translateY(-5px)`;
-    });
-    card.addEventListener('mouseleave', () => card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)');
-});
+
+// REMOVED: OLD .project-card mousemove listener to avoid conflict with CSS Flip
 
 // Scroll Active Link
 window.addEventListener('scroll', () => {
@@ -121,6 +116,40 @@ window.addEventListener('scroll', () => {
         });
     }
 });
+
+/* =========================================
+   GSAP HEADER ANIMATION
+   ========================================= */
+
+// Ensure GSAP is loaded before running this
+if (typeof gsap !== 'undefined') {
+    
+    // Initial Load Animation
+    gsap.from("header", {
+        y: -100,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    });
+
+    let lastScrollTop = 0;
+    const header = document.querySelector("header");
+
+    window.addEventListener("scroll", () => {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        // If scrolling down and past the first 100px
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Scroll Down - Hide Header
+            gsap.to("header", { y: "-100%", duration: 0.3, ease: "power2.inOut" });
+        } else {
+            // Scroll Up - Show Header
+            gsap.to("header", { y: "0%", duration: 0.3, ease: "power2.inOut" });
+        }
+        
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    });
+}
 
 /* =========================================
    FLOATING AI CHAT & LOGIC (SECURE MODE)
