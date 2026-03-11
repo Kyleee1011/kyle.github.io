@@ -328,10 +328,12 @@ footer a:hover{text-decoration:underline}
 .chat-send-btn:hover{background:rgba(99,102,241,.2)}
 
 /* ═══ LIGHTBOX ═══ */
-.lightbox-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.92);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.lightbox-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.92);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;opacity:0;transition:opacity .4s ease}
 .lightbox-overlay.active{display:flex;opacity:1}
-.lightbox-content{position:relative;max-width:90vw;max-height:85vh}
-.lightbox-content img{max-width:100%;max-height:85vh;object-fit:contain;border-radius:12px;box-shadow:0 0 60px rgba(99,102,241,.1)}
+.lightbox-content{position:relative;max-width:90vw;max-height:85vh;transform:scale(0.9);opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1)}
+.lightbox-overlay.active .lightbox-content.show{transform:scale(1);opacity:1}
+.lightbox-content img{max-width:100%;max-height:85vh;object-fit:contain;border-radius:12px;border:2px solid rgba(255,255,255,0.15);box-shadow:0 0 60px rgba(99,102,241,.18);transition:opacity .25s ease, transform .25s ease}
+.lightbox-content img.switching{opacity:0;transform:scale(0.97)}
 .lightbox-close{position:absolute;top:-40px;right:0;background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:4px;transition:color .25s}
 .lightbox-close:hover{color:#a855f7}
 .lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);color:#fff;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:16px;transition:all .3s;backdrop-filter:blur(8px)}

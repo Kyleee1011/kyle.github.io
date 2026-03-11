@@ -7,7 +7,7 @@
   <meta name="description" content="Portfolio of Kyle Justine C. Dimla — System Administrator, Software Engineer, and IT Support specialist." />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=1.1" />
 </head>
 <body>
 
@@ -149,7 +149,7 @@
         </div>
         <div class="profile-img-container">
           <div class="profile-img-border"></div>
-          <img src="asset1.jpg" alt="Kyle Justine C. Dimla" loading="lazy" />
+          <img src="asset1.1.png" alt="Kyle Justine C. Dimla" loading="lazy" />
         </div>
       </div>
     </div>
@@ -183,15 +183,16 @@
 
   <!-- TABS -->
   <div class="tab-bar" data-aos="fade-up" data-aos-duration="1000">
-    <button class="tab-btn active" data-tab="projects"><i class="fas fa-code"></i>Projects</button>
+    <button class="tab-btn active" data-tab="software"><i class="fas fa-laptop-code"></i>Software</button>
+    <button class="tab-btn" data-tab="sysadmin"><i class="fas fa-server"></i>Sys Admin</button>
+    <button class="tab-btn" data-tab="education"><i class="fas fa-graduation-cap"></i>Education</button>
     <button class="tab-btn" data-tab="skills"><i class="fas fa-award"></i>Skills</button>
     <button class="tab-btn" data-tab="techstack"><i class="fas fa-cubes"></i>Tech Stack</button>
   </div>
 
-  <!-- TAB: PROJECTS -->
-  <div class="tab-panel active" id="tab-projects">
-    <div class="projects-grid" id="projectsGrid">
-
+  <!-- TAB: SOFTWARE -->
+  <div class="tab-panel active" id="tab-software">
+    <div class="projects-grid" id="softwareGrid">
       <!-- HRIS -->
       <div class="project-card" data-aos="fade-up-right" data-aos-duration="1000"
            data-images="Project images/HRIS/HOMEPAGE.png,Project images/HRIS/LOGIN.png,Project images/HRIS/HRPORTAL.png,Project images/HRIS/payslip.png">
@@ -210,33 +211,42 @@
         </div>
       </div>
 
+
       <!-- Biometric -->
-      <div class="project-card" data-aos="fade-up" data-aos-duration="1200">
+      <div class="project-card" data-aos="fade-up" data-aos-duration="1200"
+           data-images="Project images/Biometric SQL integration live monitor/home.png">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
-          <div class="project-card-icon"><i class="fas fa-fingerprint"></i></div>
+          <div class="project-card-img" onclick="openLightbox(this.closest('.project-card'))">
+            <img src="Project images/Biometric SQL integration live monitor/home.png" alt="Biometric SQL Integration & Live Monitor" loading="lazy" />
+            <span class="img-badge"><i class="fas fa-images"></i> 1</span>
+          </div>
           <h3>Biometric SQL Integration &amp; Live Monitor</h3>
           <p>Middleware connecting Hikvision biometric terminals directly to SQL Server. Real-time Time Card monitoring dashboard for HR.</p>
           <div class="project-card-actions">
             <span style="color:#6b7280;font-size:13px">Hardware Middleware</span>
-            <span class="link-details" style="opacity:.5">Details N/A</span>
-          </div>
+            <span class="link-details" onclick="openLightbox(this.closest('.project-card'))" style="cursor:pointer"><i class="fas fa-images"></i> Gallery</span></div>
         </div>
       </div>
 
+
       <!-- Multi-Department Inventory System -->
-      <div class="project-card" data-aos="fade-up-left" data-aos-duration="1000">
+      <div class="project-card" data-aos="fade-up-left" data-aos-duration="1000"
+           data-images="Project images/multi-department Inventory System/Home.png,Project images/multi-department Inventory System/login.png">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
-          <div class="project-card-icon"><i class="fas fa-boxes"></i></div>
+          <div class="project-card-img" onclick="openLightbox(this.closest('.project-card'))">
+            <img src="Project images/multi-department Inventory System/Home.png" alt="Multi-Department Inventory System" loading="lazy" />
+            <span class="img-badge"><i class="fas fa-images"></i> 2</span>
+          </div>
           <h3>Multi-Department Inventory System</h3>
           <p>Centralized inventory management system across hotel departments to track assets, consumables, and requisitions efficiently.</p>
           <div class="project-card-actions">
             <span style="color:#6b7280;font-size:13px">Web Application</span>
-            <span class="link-details" style="opacity:.5">Details N/A</span>
-          </div>
+            <span class="link-details" onclick="openLightbox(this.closest('.project-card'))" style="cursor:pointer"><i class="fas fa-images"></i> Gallery</span></div>
         </div>
       </div>
+
 
       <!-- MWOS - Maintenance Work Order System -->
       <div class="project-card" data-aos="fade-up-right" data-aos-duration="1000"
@@ -256,19 +266,6 @@
         </div>
       </div>
 
-      <!-- Server -->
-      <div class="project-card" data-aos="fade-up" data-aos-duration="1200">
-        <div class="project-card-overlay"></div>
-        <div class="project-card-content">
-          <div class="project-card-icon"><i class="fas fa-server"></i></div>
-          <h3>Server Infrastructure &amp; TrueNAS</h3>
-          <p>Architected hotel server from scratch. Configured Domain Controllers, DNS, Active Directory via Samba. Deployed TrueNAS Scale.</p>
-          <div class="project-card-actions">
-            <span style="color:#6b7280;font-size:13px">Infrastructure</span>
-            <span class="link-details" style="opacity:.5">Details N/A</span>
-          </div>
-        </div>
-      </div>
 
       <!-- Schedule -->
       <div class="project-card" data-aos="fade-up" data-aos-duration="1200">
@@ -284,6 +281,7 @@
         </div>
       </div>
 
+
       <!-- Purchasing -->
       <div class="project-card" data-aos="fade-up-left" data-aos-duration="1000">
         <div class="project-card-overlay"></div>
@@ -298,7 +296,7 @@
         </div>
       </div>
 
-      <!-- Hidden projects (See More) -->
+
       <div class="project-card extra-project" data-aos="fade-up-right" data-aos-duration="1000" style="display:none"
            data-images="Project images/Emeals/Emeals.jpg">
         <div class="project-card-overlay"></div>
@@ -315,6 +313,7 @@
           </div>
         </div>
       </div>
+
       <div class="project-card extra-project" data-aos="fade-up" data-aos-duration="1200" style="display:none">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -324,6 +323,7 @@
           <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Management</span><span class="link-details" style="opacity:.5">Details N/A</span></div>
         </div>
       </div>
+
       <div class="project-card extra-project" data-aos="fade-up-left" data-aos-duration="1000" style="display:none">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -333,6 +333,7 @@
           <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Module</span><span class="link-details" style="opacity:.5">Details N/A</span></div>
         </div>
       </div>
+
       <div class="project-card extra-project" data-aos="fade-up-right" data-aos-duration="1000" style="display:none"
            data-images="Project images/Verifile/Verifile.jpg,Project images/Verifile/Verifile (3).jpg">
         <div class="project-card-overlay"></div>
@@ -350,7 +351,7 @@
         </div>
       </div>
 
-      <!-- Lagom -->
+
       <!-- Lagom Pool Villa -->
       <div class="project-card extra-project" data-aos="fade-up" data-aos-duration="1200" style="display:none"
            data-images="Project images/Lagom/login.png,Project images/Lagom/president home.png,Project images/Lagom/RoomUi.png,Project images/Lagom/Room ticket chat support.png,Project images/Lagom/automated room notification email and logs.png">
@@ -369,6 +370,7 @@
         </div>
       </div>
 
+
       <!-- Project Summary System -->
       <div class="project-card extra-project" data-aos="fade-up-left" data-aos-duration="1000" style="display:none"
            data-images="Project images/Project Summary/Project Summary.jpg">
@@ -386,6 +388,7 @@
           </div>
         </div>
       </div>
+
       <div class="project-card extra-project" data-aos="fade-up-left" data-aos-duration="1000" style="display:none"
            data-images="Project images/Daily Report/Daily Report.png">
         <div class="project-card-overlay"></div>
@@ -402,52 +405,34 @@
           </div>
         </div>
       </div>
-      <div class="project-card extra-project" data-aos="fade-up-right" data-aos-duration="1000" style="display:none">
+
+    </div>
+    <div style="margin-top:24px" data-aos="fade-up">
+      <button class="tab-btn" id="seeMoreBtn" onclick="toggleProjects()" style="width:auto;padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1)">
+        <span>See More</span> <i class="fas fa-chevron-down" style="font-size:12px;transition:transform .3s"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- TAB: SYS ADMIN -->
+  <div class="tab-panel" id="tab-sysadmin">
+    <div class="projects-grid">
+      <!-- Server -->
+      <div class="project-card" data-aos="fade-up" data-aos-duration="1200">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
-          <div class="project-card-icon"><i class="fas fa-seedling"></i></div>
-          <h3>Skyharvest: AI Aeroponics</h3>
-          <p>Intelligent vertical farming with sensors, Machine Learning, and Mobile App control. Best in Thesis award.</p>
-          <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Thesis · IoT</span><span class="link-details" style="opacity:.5">Details N/A</span></div>
+          <div class="project-card-icon"><i class="fas fa-server"></i></div>
+          <h3>Server Infrastructure &amp; TrueNAS</h3>
+          <p>Architected hotel server from scratch. Configured Domain Controllers, DNS, Active Directory via Samba. Deployed TrueNAS Scale.</p>
+          <div class="project-card-actions">
+            <span style="color:#6b7280;font-size:13px">Infrastructure</span>
+            <span class="link-details" style="opacity:.5">Details N/A</span>
+          </div>
         </div>
       </div>
-      <div class="project-card extra-project" data-aos="fade-up" data-aos-duration="1200" style="display:none">
-        <div class="project-card-overlay"></div>
-        <div class="project-card-content">
-          <div class="project-card-icon"><i class="fas fa-camera-retro"></i></div>
-          <h3>360 Photobooth with Coinslot</h3>
-          <p>Interactive photobooth with hardware integration for motor control and coinslot logic using Flutter and Arduino.</p>
-          <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Commercial IoT</span><span class="link-details" style="opacity:.5">Details N/A</span></div>
-        </div>
-      </div>
-      <div class="project-card extra-project" data-aos="fade-up-left" data-aos-duration="1000" style="display:none">
-        <div class="project-card-overlay"></div>
-        <div class="project-card-content">
-          <div class="project-card-icon"><i class="fas fa-solar-panel"></i></div>
-          <h3>Solar-Powered Soap Dispenser</h3>
-          <p>Automatic solar-powered soap dispenser for public use with custom power distribution system.</p>
-          <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Electronics</span><span class="link-details" style="opacity:.5">Details N/A</span></div>
-        </div>
-      </div>
-      <div class="project-card extra-project" data-aos="fade-up-right" data-aos-duration="1000" style="display:none">
-        <div class="project-card-overlay"></div>
-        <div class="project-card-content">
-          <div class="project-card-icon"><i class="fas fa-robot"></i></div>
-          <h3>Mobile Controlled Robot</h3>
-          <p>4-wheel robot using ESP8266 and Flutter. Custom mobile interface for remote control.</p>
-          <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Robotics</span><span class="link-details" style="opacity:.5">Details N/A</span></div>
-        </div>
-      </div>
-      <div class="project-card extra-project" data-aos="fade-up" data-aos-duration="1200" style="display:none">
-        <div class="project-card-overlay"></div>
-        <div class="project-card-content">
-          <div class="project-card-icon"><i class="fas fa-microchip"></i></div>
-          <h3>Line Following Robot</h3>
-          <p>Autonomous line following robot using Arduino built from scratch. Hardware assembly and sensor calibration.</p>
-          <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Robotics</span><span class="link-details" style="opacity:.5">Details N/A</span></div>
-        </div>
-      </div>
-      <div class="project-card extra-project" data-aos="fade-up-left" data-aos-duration="1000" style="display:none">
+
+
+      <div class="project-card" data-aos="fade-up-left" data-aos-duration="1000">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
           <div class="project-card-icon"><i class="fas fa-cloud"></i></div>
@@ -456,7 +441,9 @@
           <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Cloud Admin</span><span class="link-details" style="opacity:.5">Details N/A</span></div>
         </div>
       </div>
-      <div class="project-card extra-project" data-aos="fade-up-right" data-aos-duration="1000" style="display:none">
+
+
+      <div class="project-card" data-aos="fade-up-right" data-aos-duration="1000">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
           <div class="project-card-icon"><i class="fas fa-exchange-alt"></i></div>
@@ -465,7 +452,8 @@
           <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Windows Server</span><span class="link-details" style="opacity:.5">Details N/A</span></div>
         </div>
       </div>
-      <div class="project-card extra-project" data-aos="fade-up" data-aos-duration="1200" style="display:none"
+
+      <div class="project-card" data-aos="fade-up" data-aos-duration="1200"
            data-images="Project images/Synology NAS/Synology.jpg">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -481,7 +469,8 @@
           </div>
         </div>
       </div>
-      <div class="project-card extra-project" data-aos="fade-up-left" data-aos-duration="1000" style="display:none"
+
+      <div class="project-card" data-aos="fade-up-left" data-aos-duration="1000"
            data-images="Project images/Network Cabling and Restructuring/Network Cabling.jpg">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -498,11 +487,79 @@
         </div>
       </div>
 
+
     </div>
-    <div style="margin-top:24px" data-aos="fade-up">
-      <button class="tab-btn" id="seeMoreBtn" onclick="toggleProjects()" style="width:auto;padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1)">
-        <span>See More</span> <i class="fas fa-chevron-down" style="font-size:12px;transition:transform .3s"></i>
-      </button>
+  </div>
+
+  <!-- TAB: EDUCATION -->
+  <div class="tab-panel" id="tab-education">
+    <div class="projects-grid">
+      <div class="project-card" data-aos="fade-up" data-aos-duration="1200"
+           data-images="Project images/Line Following Robot/Line Following Robot.jpeg">
+        <div class="project-card-overlay"></div>
+        <div class="project-card-content">
+          <div class="project-card-img" onclick="openLightbox(this.closest('.project-card'))">
+            <img src="Project images/Line Following Robot/Line Following Robot.jpeg" alt="Line Following Robot" loading="lazy" />
+            <span class="img-badge"><i class="fas fa-images"></i> 1</span>
+          </div>
+          <h3>Line Following Robot</h3>
+          <p>Autonomous line following robot using Arduino built from scratch. Hardware assembly and sensor calibration.<br/><br/><strong>Problem Solved:</strong> Need for autonomous path navigation and logistics automation.<br/><strong>Tech Stack:</strong> Arduino, IR Sensors, C++</p>
+          <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Robotics</span><span class="link-details" onclick="openLightbox(this.closest('.project-card'))" style="cursor:pointer"><i class="fas fa-images"></i> Gallery</span></div>
+        </div>
+      </div>
+
+      <div class="project-card" data-aos="fade-up-right" data-aos-duration="1000"
+           data-images="Project images/Mobile Controlled Robot/Mobile Controlled Robot.jpeg">
+        <div class="project-card-overlay"></div>
+        <div class="project-card-content">
+          <div class="project-card-img" onclick="openLightbox(this.closest('.project-card'))">
+            <img src="Project images/Mobile Controlled Robot/Mobile Controlled Robot.jpeg" alt="Mobile Controlled Robot" loading="lazy" />
+            <span class="img-badge"><i class="fas fa-images"></i> 1</span>
+          </div>
+          <h3>Mobile Controlled Robot</h3>
+          <p>4-wheel robot using ESP8266 and Flutter. Custom mobile interface for remote control.<br/><br/><strong>Problem Solved:</strong> Remote navigation and control in hazardous or inaccessible areas.<br/><strong>Tech Stack:</strong> ESP8266, Flutter, Robotics, IoT</p>
+          <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Robotics</span><span class="link-details" onclick="openLightbox(this.closest('.project-card'))" style="cursor:pointer"><i class="fas fa-images"></i> Gallery</span></div>
+        </div>
+      </div>
+
+      <div class="project-card" data-aos="fade-up-left" data-aos-duration="1000"
+           data-images="Project images/Solar Powered Soap Dispenser/Soap dispenser.jpeg">
+        <div class="project-card-overlay"></div>
+        <div class="project-card-content">
+          <div class="project-card-img" onclick="openLightbox(this.closest('.project-card'))">
+            <img src="Project images/Solar Powered Soap Dispenser/Soap dispenser.jpeg" alt="Solar-Powered Soap Dispenser" loading="lazy" />
+            <span class="img-badge"><i class="fas fa-images"></i> 1</span>
+          </div>
+          <h3>Solar-Powered Soap Dispenser</h3>
+          <p>Automatic solar-powered soap dispenser for public use with custom power distribution system.<br/><br/><strong>Problem Solved:</strong> Enhances public hygiene using renewable energy without grid dependency.<br/><strong>Tech Stack:</strong> Solar Electronics, Sensors, Power Distribution</p>
+          <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Electronics</span><span class="link-details" onclick="openLightbox(this.closest('.project-card'))" style="cursor:pointer"><i class="fas fa-images"></i> Gallery</span></div>
+        </div>
+      </div>
+
+      <div class="project-card" data-aos="fade-up" data-aos-duration="1200">
+        <div class="project-card-overlay"></div>
+        <div class="project-card-content">
+          <div class="project-card-icon"><i class="fas fa-camera-retro"></i></div>
+          <h3>360 Photobooth with Coinslot</h3>
+          <p>Interactive photobooth with hardware integration for motor control and coinslot logic using Flutter and Arduino.<br/><br/><strong>Problem Solved:</strong> Automates commercial photobooth operation and payment processing seamlessly.<br/><strong>Tech Stack:</strong> Flutter, Arduino, Hardware Integration, Motor Control</p>
+          <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Commercial IoT</span><span class="link-details" style="opacity:.5">Details N/A</span></div>
+        </div>
+      </div>
+
+      <div class="project-card" data-aos="fade-up-right" data-aos-duration="1000"
+           data-images="Project images/Sky Harvest/Sky Harvest.jpeg,Project images/Sky Harvest/SkyHarvest1.jpeg">
+        <div class="project-card-overlay"></div>
+        <div class="project-card-content">
+          <div class="project-card-img" onclick="openLightbox(this.closest('.project-card'))">
+            <img src="Project images/Sky Harvest/Sky Harvest.jpeg" alt="Skyharvest: AI Aeroponics" loading="lazy" />
+            <span class="img-badge"><i class="fas fa-images"></i> 2</span>
+          </div>
+          <h3>Skyharvest: AI Aeroponics</h3>
+          <p>Intelligent vertical farming with sensors, Machine Learning, and Mobile App control. Best in Thesis award.<br/><br/><strong>Problem Solved:</strong> Inefficient traditional farming; maximizes crop yield with automated precision agriculture.<br/><strong>Tech Stack:</strong> IoT, Machine Learning, Sensors, Flutter, Aeroponics</p>
+          <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Thesis · IoT</span><span class="link-details" onclick="openLightbox(this.closest('.project-card'))" style="cursor:pointer"><i class="fas fa-images"></i> Gallery</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -694,6 +751,6 @@
   </div>
 </div>
 
-<script src="script.js"></script>
+<script src="script.js?v=1.1"></script>
 </body>
 </html>

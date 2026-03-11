@@ -163,7 +163,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 let showingAll=false;
 function toggleProjects(){
   showingAll=!showingAll;
-  const extras=document.querySelectorAll('.extra-project');
+  const activeTabPanel = document.querySelector('.tab-panel.active');
+  const extras=activeTabPanel ? activeTabPanel.querySelectorAll('.extra-project') : document.querySelectorAll('.extra-project');
   const btn=document.getElementById('seeMoreBtn');
   extras.forEach((card,i)=>{
     if(showingAll){
@@ -190,26 +191,50 @@ const lbClose=document.getElementById('lightboxClose');
 const lbPrev=document.getElementById('lightboxPrev');
 const lbNext=document.getElementById('lightboxNext');
 const lbCounter=document.getElementById('lightboxCounter');
+const lbContent=document.querySelector('.lightbox-content');
 let lbImages=[],lbIdx=0;
 
 function openLightbox(card){
   const attr=card.getAttribute('data-images');
   if(!attr)return;
   lbImages=attr.split(',').map(s=>s.trim());
-  lbIdx=0;showLB();
+  lbIdx=0;
+  
   lbOverlay.classList.add('active');
   document.body.style.overflow='hidden';
+  
+  lbContent.classList.remove('show');
+  showLB(true);
 }
-function showLB(){
+
+function showLB(isInitial=false){
+  if(!isInitial) {
+    lbImg.classList.add('switching');
+    setTimeout(() => {
+      updateLBContent();
+      lbImg.classList.remove('switching');
+    }, 250);
+  } else {
+    updateLBContent();
+    setTimeout(() => lbContent.classList.add('show'), 50);
+  }
+}
+
+function updateLBContent(){
   lbImg.src=lbImages[lbIdx];
   lbCounter.textContent=(lbIdx+1)+' / '+lbImages.length;
   lbPrev.style.display=lbImages.length>1?'flex':'none';
   lbNext.style.display=lbImages.length>1?'flex':'none';
 }
-function closeLB(){lbOverlay.classList.remove('active');document.body.style.overflow=''}
+
+function closeLB(){
+  lbContent.classList.remove('show');
+  lbOverlay.classList.remove('active');
+  setTimeout(()=>{document.body.style.overflow=''}, 400);
+}
 
 if(lbClose)lbClose.addEventListener('click',closeLB);
-if(lbOverlay)lbOverlay.addEventListener('click',e=>{if(e.target===lbOverlay)closeLB()});
+if(lbOverlay)lbOverlay.addEventListener('click',e=>{if(e.target===lbOverlay||e.target===lbContent)closeLB()});
 if(lbPrev)lbPrev.addEventListener('click',e=>{e.stopPropagation();lbIdx=(lbIdx-1+lbImages.length)%lbImages.length;showLB()});
 if(lbNext)lbNext.addEventListener('click',e=>{e.stopPropagation();lbIdx=(lbIdx+1)%lbImages.length;showLB()});
 document.addEventListener('keydown',e=>{
