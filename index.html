@@ -158,7 +158,7 @@
   <div class="stats-grid">
     <a href="#Portfolio" class="stat-card" data-aos="fade-right" data-aos-duration="1300">
       <div class="stat-card-gradient purple"></div>
-      <div class="stat-card-top"><div class="stat-icon"><i class="fas fa-code"></i></div><span class="stat-number">20+</span></div>
+      <div class="stat-card-top"><div class="stat-icon"><i class="fas fa-code"></i></div><span class="stat-number">23</span></div>
       <div class="stat-card-bottom"><p class="stat-label">Total Projects</p><div class="stat-card-bottom-row"><p class="stat-desc">Innovative solutions crafted</p><i class="fas fa-arrow-up-right-from-square stat-arrow"></i></div></div>
     </a>
     <div class="stat-card" data-aos="fade-up" data-aos-duration="1300">
@@ -168,7 +168,7 @@
     </div>
     <div class="stat-card" data-aos="fade-left" data-aos-duration="1300">
       <div class="stat-card-gradient purple"></div>
-      <div class="stat-card-top"><div class="stat-icon"><i class="fas fa-tools"></i></div><span class="stat-number">14+</span></div>
+      <div class="stat-card-top"><div class="stat-icon"><i class="fas fa-tools"></i></div><span class="stat-number">12</span></div>
       <div class="stat-card-bottom"><p class="stat-label">Technical Skills</p><div class="stat-card-bottom-row"><p class="stat-desc">Full-stack expertise</p><i class="fas fa-arrow-up-right-from-square stat-arrow"></i></div></div>
     </div>
   </div>
@@ -194,13 +194,13 @@
   <div class="tab-panel active" id="tab-software">
     <div class="projects-grid" id="softwareGrid">
       <!-- HRIS -->
-      <div class="project-card" data-aos="fade-up-right" data-aos-duration="1000"
-           data-images="Project images/HRIS/HOMEPAGE.png,Project images/HRIS/LOGIN.png,Project images/HRIS/HRPORTAL.png,Project images/HRIS/payslip.png">
+      <div class="project-card" data-pdp-key="hris" data-aos="fade-up-right" data-aos-duration="1000"
+           data-images="Project images/HRIS/HRPORTAL.png,Project images/HRIS/LOGIN.png,Project images/HRIS/PAYSLIP.png">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
           <div class="project-card-img" onclick="openLightbox(this.closest('.project-card'))">
-            <img src="Project images/HRIS/HOMEPAGE.png" alt="HRIS System" loading="lazy" />
-            <span class="img-badge"><i class="fas fa-images"></i> 4</span>
+            <img src="Project images/HRIS/HRPORTAL.png" alt="HRIS System" loading="lazy" />
+            <span class="img-badge"><i class="fas fa-images"></i> 3</span>
           </div>
           <h3>Integrated HRIS &amp; Payroll System</h3>
           <p>Full-stack HRIS with biometric hardware integration. Auto-calculates Days/Time-In/Out, processes Overtime, Undertime, Tax and Benefits to generate complete payslips.</p>
@@ -213,7 +213,7 @@
 
 
       <!-- Biometric -->
-      <div class="project-card" data-aos="fade-up" data-aos-duration="1200"
+      <div class="project-card" data-pdp-key="biometric" data-aos="fade-up" data-aos-duration="1200"
            data-images="Project images/Biometric SQL integration live monitor/home.png">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -231,7 +231,7 @@
 
 
       <!-- Multi-Department Inventory System -->
-      <div class="project-card" data-aos="fade-up-left" data-aos-duration="1000"
+      <div class="project-card" data-pdp-key="inventory" data-aos="fade-up-left" data-aos-duration="1000"
            data-images="Project images/multi-department Inventory System/Home.png,Project images/multi-department Inventory System/login.png">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -249,7 +249,7 @@
 
 
       <!-- MWOS - Maintenance Work Order System -->
-      <div class="project-card" data-aos="fade-up-right" data-aos-duration="1000"
+      <div class="project-card" data-pdp-key="mwos" data-aos="fade-up-right" data-aos-duration="1000"
            data-images="Project images/MWOS/LOGIN.png,Project images/MWOS/superadmin.png,Project images/MWOS/ticket.png">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -268,7 +268,7 @@
 
 
       <!-- Schedule -->
-      <div class="project-card" data-aos="fade-up" data-aos-duration="1200">
+      <!-- <div class="project-card" data-pdp-key="schedule" data-aos="fade-up" data-aos-duration="1200">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
           <div class="project-card-icon"><i class="fas fa-calendar-check"></i></div>
@@ -279,11 +279,11 @@
             <span class="link-details" style="opacity:.5">Details N/A</span>
           </div>
         </div>
-      </div>
+      </div> -->
 
 
       <!-- Purchasing -->
-      <div class="project-card" data-aos="fade-up-left" data-aos-duration="1000">
+      <!-- <div class="project-card" data-pdp-key="purchasing" data-aos="fade-up-left" data-aos-duration="1000">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
           <div class="project-card-icon"><i class="fas fa-shopping-cart"></i></div>
@@ -294,10 +294,10 @@
             <span class="link-details" style="opacity:.5">Details N/A</span>
           </div>
         </div>
-      </div>
+      </div> -->
 
 
-      <div class="project-card extra-project" data-aos="fade-up-right" data-aos-duration="1000" style="display:none"
+      <div class="project-card extra-project" data-pdp-key="emeals" data-aos="fade-up-right" data-aos-duration="1000" style="display:none"
            data-images="Project images/Emeals/Emeals.jpg">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -314,7 +314,7 @@
         </div>
       </div>
 
-      <div class="project-card extra-project" data-aos="fade-up" data-aos-duration="1200" style="display:none">
+      <!-- <div class="project-card extra-project" data-pdp-key="itms" data-aos="fade-up" data-aos-duration="1200" style="display:none">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
           <div class="project-card-icon"><i class="fas fa-laptop-code"></i></div>
@@ -322,9 +322,9 @@
           <p>Centralized IT asset platform with maintenance scheduling, issue tracking, and resource allocation.</p>
           <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Management</span><span class="link-details" style="opacity:.5">Details N/A</span></div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="project-card extra-project" data-aos="fade-up-left" data-aos-duration="1000" style="display:none">
+      <!-- <div class="project-card extra-project" data-pdp-key="accountability" data-aos="fade-up-left" data-aos-duration="1000" style="display:none">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
           <div class="project-card-icon"><i class="fas fa-clipboard-check"></i></div>
@@ -332,9 +332,9 @@
           <p>Integrated accountability tracking within ITMS for monitoring equipment loans and asset accountability.</p>
           <div class="project-card-actions"><span style="color:#6b7280;font-size:13px">Module</span><span class="link-details" style="opacity:.5">Details N/A</span></div>
         </div>
-      </div>
+      </div> -->
 
-      <div class="project-card extra-project" data-aos="fade-up-right" data-aos-duration="1000" style="display:none"
+      <div class="project-card extra-project" data-pdp-key="verifile" data-aos="fade-up-right" data-aos-duration="1000" style="display:none"
            data-images="Project images/Verifile/Verifile.jpg,Project images/Verifile/Verifile (3).jpg">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -353,7 +353,7 @@
 
 
       <!-- Lagom Pool Villa -->
-      <div class="project-card extra-project" data-aos="fade-up" data-aos-duration="1200" style="display:none"
+      <div class="project-card extra-project" data-pdp-key="lagom" data-aos="fade-up" data-aos-duration="1200" style="display:none"
            data-images="Project images/Lagom/login.png,Project images/Lagom/president home.png,Project images/Lagom/RoomUi.png,Project images/Lagom/Room ticket chat support.png,Project images/Lagom/automated room notification email and logs.png">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -372,7 +372,7 @@
 
 
       <!-- Project Summary System -->
-      <div class="project-card extra-project" data-aos="fade-up-left" data-aos-duration="1000" style="display:none"
+      <div class="project-card extra-project" data-pdp-key="projectsummary" data-aos="fade-up-left" data-aos-duration="1000" style="display:none"
            data-images="Project images/Project Summary/Project Summary.jpg">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -389,7 +389,7 @@
         </div>
       </div>
 
-      <div class="project-card extra-project" data-aos="fade-up-left" data-aos-duration="1000" style="display:none"
+      <div class="project-card extra-project" data-pdp-key="dailyreport" data-aos="fade-up-left" data-aos-duration="1000" style="display:none"
            data-images="Project images/Daily Report/Daily Report.png">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -405,20 +405,20 @@
           </div>
         </div>
       </div>
+    </div> <!-- Closes #softwareGrid -->
 
-    </div>
     <div style="margin-top:24px" data-aos="fade-up">
       <button class="tab-btn" id="seeMoreBtn" onclick="toggleProjects()" style="width:auto;padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1)">
         <span>See More</span> <i class="fas fa-chevron-down" style="font-size:12px;transition:transform .3s"></i>
       </button>
     </div>
-  </div>
+  </div> <!-- Closes #tab-software -->
 
   <!-- TAB: SYS ADMIN -->
   <div class="tab-panel" id="tab-sysadmin">
     <div class="projects-grid">
       <!-- Server -->
-      <div class="project-card" data-aos="fade-up" data-aos-duration="1200">
+      <div class="project-card" data-pdp-key="server-infra" data-aos="fade-up" data-aos-duration="1200">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
           <div class="project-card-icon"><i class="fas fa-server"></i></div>
@@ -432,7 +432,7 @@
       </div>
 
 
-      <div class="project-card" data-aos="fade-up-left" data-aos-duration="1000">
+      <div class="project-card" data-pdp-key="ms365" data-aos="fade-up-left" data-aos-duration="1000">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
           <div class="project-card-icon"><i class="fas fa-cloud"></i></div>
@@ -443,7 +443,7 @@
       </div>
 
 
-      <div class="project-card" data-aos="fade-up-right" data-aos-duration="1000">
+      <div class="project-card" data-pdp-key="migration" data-aos="fade-up-right" data-aos-duration="1000">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
           <div class="project-card-icon"><i class="fas fa-exchange-alt"></i></div>
@@ -453,7 +453,7 @@
         </div>
       </div>
 
-      <div class="project-card" data-aos="fade-up" data-aos-duration="1200"
+      <div class="project-card" data-pdp-key="vm" data-aos="fade-up" data-aos-duration="1200"
            data-images="Project images/Synology NAS/Synology.jpg">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -470,7 +470,7 @@
         </div>
       </div>
 
-      <div class="project-card" data-aos="fade-up-left" data-aos-duration="1000"
+      <div class="project-card" data-pdp-key="cabling" data-aos="fade-up-left" data-aos-duration="1000"
            data-images="Project images/Network Cabling and Restructuring/Network Cabling.jpg">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -486,15 +486,13 @@
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
 
   <!-- TAB: EDUCATION -->
   <div class="tab-panel" id="tab-education">
     <div class="projects-grid">
-      <div class="project-card" data-aos="fade-up" data-aos-duration="1200"
+      <div class="project-card" data-pdp-key="robot" data-aos="fade-up" data-aos-duration="1200"
            data-images="Project images/Line Following Robot/Line Following Robot.jpeg">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -508,7 +506,7 @@
         </div>
       </div>
 
-      <div class="project-card" data-aos="fade-up-right" data-aos-duration="1000"
+      <div class="project-card" data-pdp-key="mobilebot" data-aos="fade-up-right" data-aos-duration="1000"
            data-images="Project images/Mobile Controlled Robot/Mobile Controlled Robot.jpeg">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -522,7 +520,7 @@
         </div>
       </div>
 
-      <div class="project-card" data-aos="fade-up-left" data-aos-duration="1000"
+      <div class="project-card" data-pdp-key="soap" data-aos="fade-up-left" data-aos-duration="1000"
            data-images="Project images/Solar Powered Soap Dispenser/Soap dispenser.jpeg">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -536,7 +534,7 @@
         </div>
       </div>
 
-      <div class="project-card" data-aos="fade-up" data-aos-duration="1200">
+      <div class="project-card" data-pdp-key="photobooth" data-aos="fade-up" data-aos-duration="1200">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
           <div class="project-card-icon"><i class="fas fa-camera-retro"></i></div>
@@ -546,7 +544,7 @@
         </div>
       </div>
 
-      <div class="project-card" data-aos="fade-up-right" data-aos-duration="1000"
+      <div class="project-card" data-pdp-key="skyharvest" data-aos="fade-up-right" data-aos-duration="1000"
            data-images="Project images/Sky Harvest/Sky Harvest.jpeg,Project images/Sky Harvest/SkyHarvest1.jpeg">
         <div class="project-card-overlay"></div>
         <div class="project-card-content">
@@ -566,16 +564,16 @@
   <!-- TAB: SKILLS -->
   <div class="tab-panel" id="tab-skills">
     <div class="projects-grid">
-      <div class="project-card" data-aos="fade-up-right" data-aos-duration="1000"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fas fa-server"></i></div><h3>System Administration</h3><p>Windows Server, Active Directory, DNS, Group Policies, TrueNAS Scale file server configuration.</p></div></div>
-      <div class="project-card" data-aos="fade-up" data-aos-duration="1200"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fab fa-microsoft"></i></div><h3>MS365 Administration</h3><p>Tenant management, Exchange Admin, Outlook backup, user support, license allocation.</p></div></div>
-      <div class="project-card" data-aos="fade-up-left" data-aos-duration="1000"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fas fa-code"></i></div><h3>C# / ASP.NET</h3><p>Enterprise-grade web applications, MVC architecture, API development.</p></div></div>
-      <div class="project-card" data-aos="fade-up-right" data-aos-duration="1000"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fab fa-php"></i></div><h3>PHP &amp; Node.js</h3><p>Backend development, REST APIs, WebSocket integrations, middleware services.</p></div></div>
-      <div class="project-card" data-aos="fade-up" data-aos-duration="1200"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fas fa-database"></i></div><h3>SQL Server &amp; MySQL</h3><p>Database architecture, query optimization, stored procedures, data migration.</p></div></div>
-      <div class="project-card" data-aos="fade-up-left" data-aos-duration="1000"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fab fa-js"></i></div><h3>JavaScript</h3><p>Full-stack logic, DOM manipulation, async operations, front-end interactivity.</p></div></div>
-      <div class="project-card" data-aos="fade-up-right" data-aos-duration="1000"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fab fa-python"></i></div><h3>Python</h3><p>Scripting, automation, AI/ML, data processing, PDF comparison tools.</p></div></div>
-      <div class="project-card" data-aos="fade-up" data-aos-duration="1200"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fas fa-mobile-alt"></i></div><h3>Flutter</h3><p>Cross-platform mobile development, IoT control interfaces, custom UI.</p></div></div>
-      <div class="project-card" data-aos="fade-up-left" data-aos-duration="1000"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fas fa-network-wired"></i></div><h3>Networking</h3><p>LAN infrastructure, structured cabling, VPN, firewall configuration.</p></div></div>
-      <div class="project-card" data-aos="fade-up-right" data-aos-duration="1000"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fas fa-fingerprint"></i></div><h3>Biometrics</h3><p>Hikvision hardware integration, attendance systems, face terminals.</p></div></div>
+      <div class="project-card" data-pdp-key="skill-sysadmin" data-aos="fade-up-right" data-aos-duration="1000"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fas fa-server"></i></div><h3>System Administration</h3><p>Windows Server, Active Directory, DNS, Group Policies, TrueNAS Scale file server configuration.</p></div></div>
+      <div class="project-card" data-pdp-key="skill-ms365" data-aos="fade-up" data-aos-duration="1200"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fab fa-microsoft"></i></div><h3>MS365 Administration</h3><p>Tenant management, Exchange Admin, Outlook backup, user support, license allocation.</p></div></div>
+      <div class="project-card" data-pdp-key="skill-csharp" data-aos="fade-up-left" data-aos-duration="1000"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fas fa-code"></i></div><h3>C# / ASP.NET</h3><p>Enterprise-grade web applications, MVC architecture, API development.</p></div></div>
+      <div class="project-card" data-pdp-key="skill-phpnode" data-aos="fade-up-right" data-aos-duration="1000"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fab fa-php"></i></div><h3>PHP &amp; Node.js</h3><p>Backend development, REST APIs, WebSocket integrations, middleware services.</p></div></div>
+      <div class="project-card" data-pdp-key="skill-sql" data-aos="fade-up" data-aos-duration="1200"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fas fa-database"></i></div><h3>SQL Server &amp; MySQL</h3><p>Database architecture, query optimization, stored procedures, data migration.</p></div></div>
+      <div class="project-card" data-pdp-key="skill-js" data-aos="fade-up-left" data-aos-duration="1000"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fab fa-js"></i></div><h3>JavaScript</h3><p>Full-stack logic, DOM manipulation, async operations, front-end interactivity.</p></div></div>
+      <div class="project-card" data-pdp-key="skill-python" data-aos="fade-up-right" data-aos-duration="1000"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fab fa-python"></i></div><h3>Python</h3><p>Scripting, automation, AI/ML, data processing, PDF comparison tools.</p></div></div>
+      <div class="project-card" data-pdp-key="skill-flutter" data-aos="fade-up" data-aos-duration="1200"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fas fa-mobile-alt"></i></div><h3>Flutter</h3><p>Cross-platform mobile development, IoT control interfaces, custom UI.</p></div></div>
+      <div class="project-card" data-pdp-key="skill-networking" data-aos="fade-up-left" data-aos-duration="1000"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fas fa-network-wired"></i></div><h3>Networking</h3><p>LAN infrastructure, structured cabling, VPN, firewall configuration.</p></div></div>
+      <div class="project-card" data-pdp-key="skill-biometrics" data-aos="fade-up-right" data-aos-duration="1000"><div class="project-card-overlay"></div><div class="project-card-content"><div class="project-card-icon"><i class="fas fa-fingerprint"></i></div><h3>Biometrics</h3><p>Hikvision hardware integration, attendance systems, face terminals.</p></div></div>
     </div>
   </div>
 
@@ -707,7 +705,7 @@
       <div class="info-card" data-aos="fade-up" data-aos-delay="300">
         <i class="fas fa-envelope info-icon"></i>
         <h4>Email</h4>
-        <a href="mailto:dimlakylejustine@gmail.com">dimlakylejustine@gmail.com</a>
+        <a href="/cdn-cgi/l/email-protection#8ce8e5e1e0ede7f5e0e9e6f9fff8e5e2e9ccebe1ede5e0a2efe3e1"><span class="__cf_email__" data-cfemail="35515c5859545e4c59505f4046415c5b50755258545c591b565a58">[email&#160;protected]</span></a>
       </div>
       <div class="info-card" data-aos="fade-up" data-aos-delay="400">
         <i class="fab fa-linkedin-in info-icon"></i>
@@ -740,6 +738,69 @@
 </div>
 <button class="chat-toggle-btn" id="chatToggleBtn"><i class="fas fa-robot"></i></button>
 
+<!-- ═══ PROJECT DETAIL PANEL ═══ -->
+<div class="pdp-overlay" id="pdpOverlay">
+  <div class="pdp-panel" id="pdpPanel">
+    <div class="pdp-header">
+      <button class="pdp-back-btn" id="pdpClose">
+        <i class="fas fa-arrow-left"></i> <span>Back</span>
+      </button>
+      <nav class="pdp-breadcrumb" id="pdpBreadcrumb">
+        <span>Projects</span> <i class="fas fa-chevron-right"></i> <span id="pdpBreadcrumbTitle">Project</span>
+      </nav>
+    </div>
+
+    <div class="pdp-body">
+      <div class="pdp-left">
+        <h1 class="pdp-title" id="pdpTitle"></h1>
+        <div class="pdp-underline"></div>
+        <p class="pdp-description" id="pdpDesc"></p>
+
+        <div class="pdp-meta-row">
+          <div class="pdp-meta-box">
+            <i class="fas fa-layer-group"></i>
+            <div>
+              <span class="pdp-meta-label">Technologies</span>
+              <span class="pdp-meta-value" id="pdpTechCount">—</span>
+            </div>
+          </div>
+          <div class="pdp-meta-box">
+            <i class="fas fa-star"></i>
+            <div>
+              <span class="pdp-meta-label">Key Features</span>
+              <span class="pdp-meta-value" id="pdpFeatureCount">—</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pdp-links" id="pdpLinks"></div>
+
+        <div class="pdp-section">
+          <h3><i class="fas fa-star"></i> Key Features</h3>
+          <ul class="pdp-features" id="pdpFeatures"></ul>
+        </div>
+
+        <div class="pdp-section">
+          <h3><i class="fas fa-cubes"></i> Technologies Used</h3>
+          <div class="pdp-tech-tags" id="pdpTechTags"></div>
+        </div>
+      </div>
+
+      <div class="pdp-right">
+        <div class="pdp-preview-card" id="pdpPreviewCard">
+          <div class="pdp-preview-inner">
+            <img id="pdpPreviewImg" src="" alt="Project Preview" />
+            <div class="pdp-preview-placeholder" id="pdpPreviewPlaceholder">
+              <i class="fas fa-desktop"></i>
+              <p>No Preview Available</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ═══ LIGHTBOX ═══ -->
 <div class="lightbox-overlay" id="lightboxOverlay">
   <div class="lightbox-content">
@@ -751,6 +812,6 @@
   </div>
 </div>
 
-<script src="script.js?v=1.1"></script>
+<script src="script.js"></script>
 </body>
 </html>

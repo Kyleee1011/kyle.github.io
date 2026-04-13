@@ -387,3 +387,316 @@ footer a:hover{text-decoration:underline}
   .tech-grid{grid-template-columns:repeat(2,1fr)}
   .profile-img-container{width:220px;height:220px}
 }
+
+/* ══════════════════════════════════════
+   PROJECT DETAIL PANEL
+══════════════════════════════════════ */
+.pdp-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 8000;
+  background: rgba(3, 0, 20, 0.7);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.pdp-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+.pdp-panel {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: min(940px, 100vw);
+  background: #0d0726;
+  border-left: 1px solid rgba(99, 102, 241, 0.2);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99,102,241,.3) transparent;
+}
+.pdp-panel.slide-in {
+  transform: translateX(0);
+}
+
+/* Header */
+.pdp-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 32px;
+  background: rgba(13, 7, 38, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.15);
+}
+.pdp-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  color: #c7d2fe;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.pdp-back-btn:hover {
+  background: rgba(99, 102, 241, 0.25);
+  border-color: rgba(99, 102, 241, 0.5);
+  color: #fff;
+}
+.pdp-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(199, 210, 254, 0.5);
+  overflow: hidden;
+}
+.pdp-breadcrumb i { font-size: 10px; }
+#pdpBreadcrumbTitle {
+  color: #c7d2fe;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Body layout */
+.pdp-body {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 40px;
+  padding: 40px 32px;
+  flex: 1;
+}
+@media (max-width: 820px) {
+  .pdp-body { grid-template-columns: 1fr; padding: 28px 20px; }
+  .pdp-right { order: -1; }
+}
+
+/* Left column */
+.pdp-title {
+  font-size: clamp(22px, 3.5vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #fff 0%, #c7d2fe 60%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+.pdp-underline {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #6366f1, #a855f7);
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+.pdp-description {
+  font-size: 14.5px;
+  color: rgba(199, 210, 254, 0.78);
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+
+/* Meta row */
+.pdp-meta-row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.pdp-meta-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px solid rgba(99, 102, 241, 0.18);
+  border-radius: 10px;
+  padding: 12px 18px;
+  flex: 1;
+  min-width: 140px;
+}
+.pdp-meta-box > i {
+  font-size: 20px;
+  color: #818cf8;
+  flex-shrink: 0;
+}
+.pdp-meta-box > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.pdp-meta-label {
+  font-size: 11px;
+  color: rgba(199, 210, 254, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.pdp-meta-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #c7d2fe;
+}
+
+/* Links */
+.pdp-links {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.pdp-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.pdp-link-btn.primary {
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  color: #fff;
+  border: none;
+}
+.pdp-link-btn.primary:hover { opacity: 0.85; transform: translateY(-1px); }
+.pdp-link-btn.ghost {
+  background: transparent;
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  color: #c7d2fe;
+}
+.pdp-link-btn.ghost:hover {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.6);
+}
+
+/* Sections */
+.pdp-section {
+  margin-bottom: 28px;
+}
+.pdp-section h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #a78bfa;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.pdp-section h3 i { font-size: 13px; }
+
+/* Features list */
+.pdp-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pdp-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: rgba(199, 210, 254, 0.8);
+  line-height: 1.5;
+}
+.pdp-features li i {
+  color: #6366f1;
+  font-size: 10px;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+/* Tech tags */
+.pdp-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pdp-tech-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 13px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #c7d2fe;
+  transition: all 0.2s;
+}
+.pdp-tech-tag:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.5);
+  color: #fff;
+}
+
+/* Right column — preview */
+.pdp-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.pdp-preview-card {
+  position: sticky;
+  top: 80px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  background: rgba(99, 102, 241, 0.04);
+  box-shadow: 0 0 60px rgba(99, 102, 241, 0.08);
+}
+.pdp-preview-inner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+.pdp-preview-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.pdp-preview-card:hover .pdp-preview-inner img {
+  transform: scale(1.03);
+}
+.pdp-preview-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  color: rgba(199, 210, 254, 0.25);
+}
+.pdp-preview-placeholder i { font-size: 40px; }
+.pdp-preview-placeholder p { font-size: 13px; }
+
+/* Add a subtle hover ring to project cards to hint they're clickable */
+.project-card[data-pdp-key]:hover .project-card-overlay {
+  opacity: 1 !important;
+}
